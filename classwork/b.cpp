@@ -10,7 +10,7 @@ int main(){
     for(int i=2 ; i<=n; i++){
         if(a[i]==false){
             cout<<i<<" ";
-            for(int j=i+i ;j<=n; j+=i){
+            for(int j=i*i ;j<=n; j+=i){
                 a[j]=true;
             }
         }
