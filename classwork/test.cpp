@@ -14,7 +14,7 @@ int main(){
     for(int i=0 ; i<m ; i++){
         cin>>a>>b;
         f[a]++;
-        s[a]++;
+        s[b]++;
         v[a][b]++;
     }
     set<pair<int,int>> q;
@@ -25,14 +25,14 @@ int main(){
         int x=f[l];
         q.erase(make_pair(f[l],-l));
         for(auto& p : v[l]){
-            q.erase(make_pair(f[p.first, -p.first]));
-            q.insert(make_pair(f[p.first+p.second , -p.first]));
+            q.erase(make_pair(f[p.first], -p.first));
+            q.insert(make_pair(f[p.first+p.second] , -p.first));
         }
         cout<<-(int)q.begin()->second<<endl;
-        q.insert(make_pair(f[p],-p));
+        q.insert(make_pair(f[l],-l));
         for(auto& y: v[l]){
-            q.erase(make_pair(f[y.first+y.second , -y.first]));
-            q.insert(make_pair(f[y.first, -y.first]));
+            q.erase(make_pair(f[y.first+y.second] , -y.first));
+            q.insert(make_pair(f[y.first], -y.first));
         }
     }
 }
