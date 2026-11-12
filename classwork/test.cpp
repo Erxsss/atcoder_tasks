@@ -1,27 +1,38 @@
 #include<iostream>
 #include<vector>
-using namespace std;
+#include<utility>
+#include<map>
+#include<set>
+using namespace std ;
 
+vector<int> f(200000), s(200000);
+map<int, int> v[200001];
 int main(){
-    int n ;
-    cin>>n;
-    vector<int> p(n), b;
-    queue<int> a;
-    for(int i=0 ; i<n; i++){
-        cin>>p[i];
+    int  n , m;
+    int a ,b ;
+    cin>>n>>m;
+    for(int i=0 ; i<m ; i++){
+        cin>>a>>b;
+        f[a]++;
+        s[a]++;
+        v[a][b]++;
     }
-    for(int k=0 ; k<n; k++){
-        if(p[k]%2==0){
-            a.push(p[k]);
-        }else{
-            b.push_back(p[k]);
+    set<pair<int,int>> q;
+    for(int k=1 ; k<=n ; k++){
+        q.insert(make_pair(f[k],-k));
+    }
+    for(int l=1 ; l<=n ; l++){
+        int x=f[l];
+        q.erase(make_pair(f[l],-l));
+        for(auto& p : v[l]){
+            q.erase(make_pair(f[p.first, -p.first]));
+            q.insert(make_pair(f[p.first+p.second , -p.first]));
         }
-    }
-    for(int s=0 ; s<a.size() ; s++){
-        cout<<a[s]<<" ";
-    }
-    cout<<endl;
-    for(int o=0 ; o<b.size() ; o++){
-        cout<<b[o]+1<<" ";
+        cout<<-(int)q.begin()->second<<endl;
+        q.insert(make_pair(f[p],-p));
+        for(auto& y: v[l]){
+            q.erase(make_pair(f[y.first+y.second , -y.first]));
+            q.insert(make_pair(f[y.first, -y.first]));
+        }
     }
 }
