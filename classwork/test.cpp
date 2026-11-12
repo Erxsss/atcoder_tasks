@@ -23,6 +23,6 @@ int main(){
     }
     cout<<endl;
     for(int o=0 ; o<m ; o++){
-        cout<<b[o]<<" ";
+        cout<<b[o]+1<<" ";
     }
 }
