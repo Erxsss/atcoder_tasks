@@ -22,7 +22,6 @@ int main(){
         q.insert(make_pair(f[k],-k));
     }
     for(int l=1 ; l<=n ; l++){
-        int x=f[l];
         q.erase(make_pair(f[l],-l));
         for(auto& p : v[l]){
             q.erase(make_pair(f[p.first], -p.first));
