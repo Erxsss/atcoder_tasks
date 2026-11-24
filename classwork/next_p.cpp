@@ -2,28 +2,27 @@
 #include<algorithm>
 #include<vector>
 using namespace std;
-
+vector next_pun(vector a){
+    
+}
 int main(){
     int n;
     cin>>n;
-    vector<int> a(n),b(n);
-    b=a;
-    for(int x=0 ; x<n; x++) cin>>a[x];
-
-    for(int i=n-1 ; i>=0; i--){
-        if(a[i]>a[i-1]){
-            reverse(a.begin()+i,a.end());
-            if(a[i]>a[i-1]){
-                swap(a[i],a[i-1]);
-                break;
-            }else{
-                swap(a[i-1],a[i+1]);
-                break;
-            }
-        }
+    vector<int>b(n);
+    for(int i=0;i<n;i++)cin>>b[i];
+    int a;
+    for(a=n-1; a>0;a--){
+        if(b[a]>b[a-1]) break;
     }
-    
-    for(int s=0 ; s<n ; s++){
-        cout<<a[s]<<" ";
+    // cout<<a;
+    if(a>0){
+        int j=n-1;
+        while(b[j]<=b[a-1])j--;
+        // cout<<b[j]<<" "<<j<<endl;
+        swap(b[a-1],b[j]);
+    }
+    reverse(b.begin()+a,b.end());
+    for(int s=0 ; s<n; s++){
+        cout<<b[s]<<" ";
     }
 }
